@@ -1,0 +1,30 @@
+{
+    "name": "well/service-api",
+    "autoload": {
+        "psr-4": {
+            "Appilaction\\": "src/Application",
+            "Domain\\": "src/Domain",
+            "Infra\\": "src/Infra",
+            "Config\\": "config/"
+        }
+    },
+    "authors": [
+        {
+            "name": "weliton",
+            "email": "welingtonzsilva@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.6",
+        "nyholm/psr7": "^1.8",
+        "nyholm/psr7-server": "^1.0",
+        "laminas/laminas-diactoros": "^3.2",
+        "php-di/php-di": "^7.0",
+        "vlucas/phpdotenv": "^5.5",
+        "symfony/var-dumper": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.4"
+    }
+}
