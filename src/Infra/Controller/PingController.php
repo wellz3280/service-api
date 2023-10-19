@@ -13,13 +13,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class PingController implements RequestHandlerInterface
 {
-    private PDO $pdo;
-
-    public function __construct(PDO $pdo)
-    {
-        $this->pdo = $pdo;
-    }
-
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $date = (new DateTime())->format(DATE_ATOM);
