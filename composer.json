@@ -8,6 +8,11 @@
             "Config\\": "config/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "weliton",
@@ -26,5 +31,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^10.4"
+    },
+    "scripts": {
+        "phpunit": "vendor/bin/phpunit --color"
     }
 }
