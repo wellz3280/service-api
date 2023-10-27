@@ -1,4 +1,10 @@
 version: '3.1'
+
+networks:
+    application:
+      name: application
+      external: true
+
 services:
   db:
     image: mysql
@@ -14,4 +20,16 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - 8081:8081
+  php:
+    image: php
+    container_name: php
+    ports:
+      - "8080:8000"
+    links:
+      - "db"
+    environment:
+        HANDLER: public/index.php
+        DOCUMENT_ROOT: public
+    networks:
+      - application
