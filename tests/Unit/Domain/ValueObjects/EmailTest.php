@@ -10,11 +10,10 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 /**
- * @covers Domain\Entities\ValueObjects\Email
+ * @covers Domain\ValueObjects\Email
  */
 final class EmailTest extends TestCase
 {
-
     public function testInstantiateEmailFromStaticMethod(): void
     {
         $expected   = 'welingtonzsilva@gmail.com';
