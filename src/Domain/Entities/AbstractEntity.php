@@ -50,6 +50,10 @@ abstract class AbstractEntity implements JsonSerializable
 
     public function getDeletedAt(): ?string
     {
+        if ($this->deletedAt === 0 || is_null($this->deletedAt)) {
+            return null;
+        }
+
         return (new DateTimeImmutable())
             ->setTimestamp($this->deletedAt)
             ->format(DATE_ATOM);
@@ -62,6 +66,10 @@ abstract class AbstractEntity implements JsonSerializable
 
     public function getUpdatedAt(): ?string
     {
+        if ($this->updatedAt === 0 || is_null($this->updatedAt)) {
+            return null;
+        }
+
         return (new DateTimeImmutable())
             ->setTimestamp($this->updatedAt)
             ->format(DATE_ATOM);
