@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Domain\Entities;
 
+use DateTimeImmutable;
 use Domain\ValueObjects\Email;
 
 final class User extends AbstractEntity
 {
     public function __construct(
-        protected int $id,
+        protected int|null $id,
         private string $name,
         private Email $email,
-        protected int $createdAt,
+        protected int|null $createdAt,
         protected int|null $deletedAt,
         protected int|null $updatedAt,
     ) {
@@ -20,12 +21,12 @@ final class User extends AbstractEntity
 
     /**
      * @param array{
-     * id: int,
+     * id?: int|null,
      * name: string,
      * email: Email,
      * created_at: int,
-     * deleted_at: int|null
-     * updated_at: int|null
+     * deleted_at?: int|null
+     * updated_at?: int|null
      * }$data
      */
     public static function createFromArray(array $data): self
@@ -35,13 +36,18 @@ final class User extends AbstractEntity
             $email = Email::create($data['email']);
         }
 
+        $createdAt = $data['created_at'];
+        if (is_null($createdAt)) {
+            $createdAt = (new DateTimeImmutable())->getTimestamp();
+        }
+
         return new self(
-            $data['id'],
+            $data['id'] ?? null,
             $data['name'],
             $email,
-            $data['created_at'],
-            $data['deleted_at'],
-            $data['updated_at'],
+            $createdAt,
+            $data['deleted_at'] ?? null,
+            $data['updated_at'] ?? null,
         );
     }
 

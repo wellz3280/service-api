@@ -1,1 +1,1 @@
-FROM php:8.2-cli
+FROM mysql:5.7
