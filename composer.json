@@ -33,6 +33,7 @@
         "phpunit/phpunit": "^10.4"
     },
     "scripts": {
-        "phpunit": "vendor/bin/phpunit --color"
+        "phpunit": "vendor/bin/phpunit --color",
+        "phpunit:errors": "vendor/bin/phpunit --color --display-warnings --display-notices"
     }
 }

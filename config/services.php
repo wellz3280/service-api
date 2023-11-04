@@ -11,4 +11,10 @@ return [
         'username'      => env('USER_NAME', 'root'),
         'password'  => env('PASSWORD', 'root')
     ],
+    'dbTest' => [
+        'host'      => env('DATABASE_HOST', 'localhost'),
+        'database'  => env('DATABASE_TEST', 'servicedbTests'),
+        'username'      => env('USER_NAME', 'root'),
+        'password'  => env('PASSWORD', 'root')
+    ],
 ];

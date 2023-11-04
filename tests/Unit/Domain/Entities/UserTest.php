@@ -7,6 +7,7 @@ namespace tests\Unit\Domain\Entities;
 use DateTimeImmutable;
 use Domain\Entities\User;
 use Domain\ValueObjects\Email;
+use SebastianBergmann\Type\VoidType;
 use Tests\TestCase;
 
 /**
@@ -52,5 +53,18 @@ final class UserTest extends TestCase
         $user = User::createFromArray($expected);
 
         $this->assertSame($expected['email'], $user->getEmail());
+    }
+
+    public function testInstantiateUserwithoutOptionalproperties(): Void
+    {
+        $expected = [
+            'id'         => 1,
+            'name'       => 'josé weliton da silva',
+            'email'      => Email::create('we@w.com.br'),
+        ];
+
+        $user = User::createFromArray($expected);
+
+        $this->assertSame($expected['id'], $user->getId());
     }
 }
