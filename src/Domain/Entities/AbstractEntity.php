@@ -15,15 +15,15 @@ use const DATE_ATOM;
 
 abstract class AbstractEntity implements JsonSerializable
 {
-    protected int $id;
+    protected ?int $id;
 
-    protected int $createdAt;
+    protected ?int $createdAt;
 
     protected ?int $deletedAt;
 
     protected ?int $updatedAt;
 
-    public function __construct(int $id, int $createdAt, ?int $deletedAt, ?int $updatedAt)
+    public function __construct(?int $id, ?int $createdAt, ?int $deletedAt, ?int $updatedAt)
     {
         $this->id           = $id;
         $this->createdAt    = $createdAt;
@@ -31,13 +31,17 @@ abstract class AbstractEntity implements JsonSerializable
         $this->updatedAt    = $updatedAt;
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCreatedAt(): string
+    public function getCreatedAt(): ?string
     {
+        if ($this->createdAt === 0 || is_null($this->createdAt)) {
+            return null;
+        }
+
         return (new DateTimeImmutable())
             ->setTimestamp($this->createdAt)
             ->format(DATE_ATOM);
