@@ -2,7 +2,7 @@
     "name": "well/service-api",
     "autoload": {
         "psr-4": {
-            "Appilaction\\": "src/Application",
+            "Application\\": "src/Application",
             "Domain\\": "src/Domain",
             "Infra\\": "src/Infra",
             "Config\\": "config/"

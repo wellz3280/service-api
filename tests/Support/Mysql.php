@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Support;
 
-use Domain\Interfaces\MysqlDbTestInterface;
 use Infra\Factories\ContainerFactory;
 use PDO;
 
@@ -15,7 +14,7 @@ trait Mysql
     public function pdo(): PDO
     {
         $container  = ContainerFactory::create();
-        $pdo        = $container->get(MysqlDbTestInterface::class);
+        $pdo        = $container->get(PDO::class);
 
         return $pdo;
     }

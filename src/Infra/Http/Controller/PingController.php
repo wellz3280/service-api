@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Infra\Controller;
+namespace Infra\Http\Controller;
 
 use DateTime;
 use Laminas\Diactoros\Response\JsonResponse;
-use PDO;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
