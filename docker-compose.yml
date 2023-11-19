@@ -1,9 +1,9 @@
-version: '3.1'
+version: '3.5'
 
 networks:
     application:
-      name: application
-      external: true
+        name: application
+        external: true
 
 services:
   db:
@@ -16,20 +16,26 @@ services:
       MYSQL_DATABASE: servicedb
     ports:
       - "3306:3306"
+    networks:
+      - application
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+    networks:
+      - application
   php:
-    image: php
-    container_name: php
+    image: bref/php-81-fpm-dev
+    container_name: php-8.1.15
     ports:
-      - "8081:8000"
+      - 8081:8000
     links:
       - "db"
     environment:
         HANDLER: public/index.php
         DOCUMENT_ROOT: public
+    volumes:
+      - .:/var/task:ro
     networks:
       - application
