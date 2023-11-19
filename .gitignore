@@ -2,3 +2,4 @@
 .env
 *.xml
 comandos.txt
+composer.lock

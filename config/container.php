@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Config;
 
-use Domain\Interfaces\MysqlDbTestInterface;
-use Infra\Factories\MysqlDbTestFactory;
+use Domain\Interfaces\UserRepositoryInterface;
 use Infra\Factories\MysqlFactory;
+use Infra\Persistence\UserRepository;
 use PDO;
 
+use function DI\autowire;
 use function DI\factory;
 
 return [
-    MysqlDbTestInterface::class => factory(MysqlDbTestFactory::class),
-    PDO::class              => factory(MysqlFactory::class),
+    PDO::class                      => factory(MysqlFactory::class),
+    UserRepositoryInterface::class  => autowire(UserRepository::class),
 ];
