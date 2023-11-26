@@ -29,6 +29,15 @@ final class GetUser implements ServiceInterface
 
         $users = $stmt->fetchAll();
 
-        return ViewModel::createFromArray($users);
+        $output = array_map(
+            fn ($row) => [
+                'id'            => $row['id'],
+                'name'          => $row['name'],
+                'email'         => $row['email'],
+                'created_at'    => $row['created_at'],
+                'updated_at'    => $row['updated_at'],
+            ], (array) $users);
+
+        return ViewModel::createFromArray($output);
     }
 }
