@@ -9,6 +9,7 @@ use Application\ServiceInterface;
 use Application\ViewModelInterface;
 use Domain\Entities\User;
 use Domain\Interfaces\UserRepositoryInterface;
+use InvalidArgumentException;
 
 final class CreateUser implements ServiceInterface
 {
@@ -23,11 +24,14 @@ final class CreateUser implements ServiceInterface
      */
     public function handle(InputModelInterface $input): ViewModelInterface
     {
+        if ($this->repository->hasEmail($input->getEmail())) {
+            throw new InvalidArgumentException('Email already exists', 400);
+        }
+
         $user = User::createFromArray([
             'name'  => $input->getName(),
             'email' => $input->getEmail(),
         ]);
-
         $this->repository->save($user);
 
         return ViewModel::createFromArray([
