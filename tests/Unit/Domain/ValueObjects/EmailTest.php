@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace tests\Unit\Domain\ValueObjects;
 
+use Domain\Exceptions\EmailException;
 use Domain\ValueObjects\Email;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -25,9 +26,9 @@ final class EmailTest extends TestCase
     #[DataProvider('invalidEmail')]
     public function testThrowExceptionIfEmailIsNotValid(string $value): void
     {
-        $this->expectExceptionMessage('Email is not valid');
+        $this->expectExceptionMessage('Email is not valid.');
         $this->expectExceptionCode(400);
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(EmailException::class);
         Email::create($value);
     }
 

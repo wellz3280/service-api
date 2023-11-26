@@ -8,6 +8,7 @@ use Application\InputModelInterface;
 use Application\ServiceInterface;
 use Application\ViewModelInterface;
 use Domain\Entities\User;
+use Domain\Exceptions\EmailException;
 use Domain\Interfaces\UserRepositoryInterface;
 use InvalidArgumentException;
 
@@ -25,7 +26,7 @@ final class CreateUser implements ServiceInterface
     public function handle(InputModelInterface $input): ViewModelInterface
     {
         if ($this->repository->hasEmail($input->getEmail())) {
-            throw new InvalidArgumentException('Email already exists', 400);
+            throw EmailException::emailExists();
         }
 
         $user = User::createFromArray([

@@ -6,6 +6,7 @@ namespace Tests\Integration\Application\CreateUser;
 
 use Application\CreateUser\CreateUser;
 use Application\CreateUser\InputModel;
+use Domain\Exceptions\EmailException;
 use Domain\ValueObjects\Email;
 use Infra\Persistence\UserRepository;
 use InvalidArgumentException;
@@ -41,9 +42,9 @@ final class CreateUserTest extends TestCase
         $repository = new UserRepository($pdo);
         $usecase    = new CreateUser($repository);
 
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(EmailException::class);
         $this->expectExceptionCode(400);
-        $this->expectExceptionMessage('Email is not valid');
+        $this->expectExceptionMessage('Email is not valid.');
 
         $usecase->handle(InputModel::createFromArray([
             'payload' => [
@@ -69,7 +70,7 @@ final class CreateUserTest extends TestCase
 
         $this->userFactory($data);
 
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(EmailException::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage('Email already exists');
 

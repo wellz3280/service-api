@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\ValueObjects;
 
-use InvalidArgumentException;
+use Domain\Exceptions\EmailException;
 use JsonSerializable;
 use Stringable;
 
@@ -50,7 +50,7 @@ final class Email implements Stringable, JsonSerializable
         $validate   = preg_match($patters, $value);
 
         if (!$validate) {
-            throw new InvalidArgumentException('Email is not valid', 400);
+            throw EmailException::invalidEmail('Email is not valid.');
         }
 
         return true;
