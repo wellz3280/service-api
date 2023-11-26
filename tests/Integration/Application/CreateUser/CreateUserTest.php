@@ -51,6 +51,33 @@ final class CreateUserTest extends TestCase
                 'email' => 'ww.com.br',
             ],
         ]));
+    }
 
+    public function testThrowExceptionWhenEmailExists(): void
+    {
+        $pdo        = $this->pdo();
+        $repository = new UserRepository($pdo);
+        $usecase    = new CreateUser($repository);
+
+        $data = [
+            [
+                'id'         => 1,
+                'name'       => 'jill valentine',
+                'email'      => 'valentine.jill@umbrella.com',
+            ]
+        ];
+
+        $this->userFactory($data);
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionCode(400);
+        $this->expectExceptionMessage('Email already exists');
+
+        $usecase->handle(InputModel::createFromArray([
+            'payload' => [
+                'name'  => 'julia valentine',
+                'email' => 'valentine.jill@umbrella.com',
+            ],
+        ]));
     }
 }
