@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Support;
 
+use DateTimeImmutable;
+use Domain\Entities\User;
 use Infra\Factories\ContainerFactory;
 use PDO;
 
@@ -42,6 +44,27 @@ trait Mysql
 
         foreach ($tables as $table) {
             $stmt   = $pdo->prepare($table);
+            $stmt->execute();
+        }
+    }
+
+    /**
+     * @param User[] $users
+     */
+    public function userFactory(array $users): void
+    {
+        $pdo = $this->pdo();
+        $values = ':name, :email, :created_at, :deleted_at, :updated_at';
+        $sql    = sprintf('INSERT INTO users (name, email, created_at, deleted_at, updated_at) Values (%s)', $values);
+
+        $stmt   = $pdo->prepare($sql);
+
+        foreach ($users as $user) {
+            $stmt->bindValue(':name', $user['name'], PDO::PARAM_STR);
+            $stmt->bindValue(':email', $user['email'], PDO::PARAM_STR);
+            $stmt->bindValue(':created_at', (new DateTimeImmutable())->getTimestamp(), PDO::PARAM_INT);
+            $stmt->bindValue(':deleted_at', null, PDO::PARAM_NULL);
+            $stmt->bindValue('updated_at', null, PDO::PARAM_NULL);
             $stmt->execute();
         }
     }
