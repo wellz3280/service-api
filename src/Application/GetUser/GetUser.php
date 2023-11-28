@@ -9,6 +9,8 @@ use Application\ServiceInterface;
 use Application\ViewModelInterface;
 use PDO;
 
+use function array_map;
+
 final class GetUser implements ServiceInterface
 {
     private PDO $pdo;
@@ -24,7 +26,6 @@ final class GetUser implements ServiceInterface
     public function handle(InputModelInterface $input): ViewModelInterface
     {
         $sql = 'SELECT * FROM users';
-
         $stmt = $this->pdo->query($sql);
 
         $users = $stmt->fetchAll();
@@ -36,7 +37,9 @@ final class GetUser implements ServiceInterface
                 'email'         => $row['email'],
                 'created_at'    => $row['created_at'],
                 'updated_at'    => $row['updated_at'],
-            ], (array) $users);
+            ],
+            (array) $users
+        );
 
         return ViewModel::createFromArray($output);
     }

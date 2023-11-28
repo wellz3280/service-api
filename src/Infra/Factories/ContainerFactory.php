@@ -12,9 +12,9 @@ final class ContainerFactory
     public static function create(): ContainerInterface
     {
         $containerBuilder = new ContainerBuilder();
-        $containerBuilder->addDefinitions(__DIR__.'/../../../config/container.php');
+        $containerBuilder->addDefinitions(__DIR__ . '/../../../config/container.php');
         $containerBuilder->addDefinitions([
-            'services'  => require __DIR__.'/../../../config/services.php',
+            'services'  => require __DIR__ . '/../../../config/services.php',
         ]);
 
         return $containerBuilder->build();

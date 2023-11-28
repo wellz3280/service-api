@@ -7,15 +7,15 @@ namespace tests\Unit\Domain\Entities;
 use DateTimeImmutable;
 use Domain\Entities\User;
 use Domain\ValueObjects\Email;
-use SebastianBergmann\Type\VoidType;
 use Tests\TestCase;
+
+use const DATE_ATOM;
 
 /**
  * @covers Domain\Entities\User
  */
 final class UserTest extends TestCase
 {
-
     public function testInstanceUserFromStaticMethod(): void
     {
         $expected = [
@@ -55,7 +55,7 @@ final class UserTest extends TestCase
         $this->assertSame($expected['email'], $user->getEmail());
     }
 
-    public function testInstantiateUserwithoutOptionalproperties(): Void
+    public function testInstantiateUserwithoutOptionalproperties(): void
     {
         $expected = [
             'id'         => 1,

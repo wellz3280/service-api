@@ -8,7 +8,10 @@ use Application\AbstractInputModel;
 
 final class InputModel extends AbstractInputModel
 {
-    public function throwExceptionOnFailure($data): void
+    /**
+     * @param mixed[] $data
+     */
+    public function throwExceptionOnFailure(array $data): void
     {
         //
     }

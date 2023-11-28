@@ -6,9 +6,11 @@ namespace Infra\Http\Controller;
 
 use DateTime;
 use Laminas\Diactoros\Response\JsonResponse;
-use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+
+use const DATE_ATOM;
 
 final class PingController implements RequestHandlerInterface
 {

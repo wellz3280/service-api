@@ -7,6 +7,9 @@ namespace Domain\Entities;
 use DateTimeImmutable;
 use Domain\ValueObjects\Email;
 
+use function is_int;
+use function is_string;
+
 final class User extends AbstractEntity
 {
     public function __construct(

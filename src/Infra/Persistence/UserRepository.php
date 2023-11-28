@@ -8,10 +8,10 @@ use DateTimeImmutable;
 use Domain\Entities\User;
 use Domain\Interfaces\UserRepositoryInterface;
 use Domain\ValueObjects\Email;
-use Exception;
 use InvalidArgumentException;
 use PDO;
-use PDOException;
+
+use function sprintf;
 
 final class UserRepository implements UserRepositoryInterface
 {
@@ -103,7 +103,6 @@ final class UserRepository implements UserRepositoryInterface
             if ($this->findByEmail($email) instanceof User) {
                 return true;
             }
-
         } catch (InvalidArgumentException) {
             return false;
         }

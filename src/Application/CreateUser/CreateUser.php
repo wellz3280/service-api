@@ -10,7 +10,6 @@ use Application\ViewModelInterface;
 use Domain\Entities\User;
 use Domain\Exceptions\EmailException;
 use Domain\Interfaces\UserRepositoryInterface;
-use InvalidArgumentException;
 
 final class CreateUser implements ServiceInterface
 {

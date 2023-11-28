@@ -11,6 +11,8 @@ use InvalidArgumentException;
 use Tests\Support\Mysql;
 use Tests\TestCase;
 
+use function sprintf;
+
 /**
  * @covers Infra\Persistence\UserRepository
  */
@@ -195,7 +197,6 @@ final class UserRepositoryTest extends TestCase
 
         $user->withName('jose weliton da silva');
         $repository->update($user);
-
 
         $this->assertSame('jose weliton da silva', $user->getName());
     }

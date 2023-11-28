@@ -7,7 +7,6 @@ namespace Tests\Integration\Application\GetUser;
 use Application\GetUser\GetUser;
 use Application\GetUser\InputModel;
 use DateTimeImmutable;
-use Domain\Entities\User;
 use Tests\Support\Mysql;
 use Tests\TestCase;
 

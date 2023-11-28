@@ -12,7 +12,10 @@ abstract class AbstractInputModel implements InputModelInterface
 
     protected array $paginate;
 
-    abstract function throwExceptionOnFailure($data): void;
+    /**
+     * @param mixed[] $data
+     */
+    abstract public function throwExceptionOnFailure(array $data): void;
 
     /**
      * @param mixed[] $payload
@@ -49,7 +52,10 @@ abstract class AbstractInputModel implements InputModelInterface
         return $this->paginate;
     }
 
-    public static function createFromArray(array $data): self
+    /**
+     * @param mixed[] $data
+     */
+    public static function createFromArray(array $data): static
     {
         return new static(
             $data['payload'] ?? [],

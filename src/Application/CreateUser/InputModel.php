@@ -21,13 +21,16 @@ final class InputModel extends AbstractInputModel
         return Email::create($this->payload['email']);
     }
 
-    public function throwExceptionOnFailure($data): void
+    /**
+     * @param mixed[] $data
+     */
+    public function throwExceptionOnFailure(array $data): void
     {
         try {
             v::key('name', v::stringType()->notEmpty()->setName('name'))
             ->assert($data['payload']);
-        } catch(NestedValidationException $exception) {
-           echo $exception->getFullMessage();
+        } catch (NestedValidationException $exception) {
+            echo $exception->getFullMessage();
         }
     }
 }

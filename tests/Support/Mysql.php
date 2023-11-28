@@ -9,6 +9,7 @@ use Domain\Entities\User;
 use Infra\Factories\ContainerFactory;
 use PDO;
 
+use function count;
 use function sprintf;
 
 trait Mysql
@@ -16,9 +17,8 @@ trait Mysql
     public function pdo(): PDO
     {
         $container  = ContainerFactory::create();
-        $pdo        = $container->get(PDO::class);
 
-        return $pdo;
+        return $container->get(PDO::class);
     }
 
     public function createTables(PDO $pdo): void

@@ -9,7 +9,6 @@ use Application\CreateUser\InputModel;
 use Domain\Exceptions\EmailException;
 use Domain\ValueObjects\Email;
 use Infra\Persistence\UserRepository;
-use InvalidArgumentException;
 use Tests\Support\Mysql;
 use Tests\TestCase;
 
@@ -65,7 +64,7 @@ final class CreateUserTest extends TestCase
                 'id'         => 1,
                 'name'       => 'jill valentine',
                 'email'      => 'valentine.jill@umbrella.com',
-            ]
+            ],
         ];
 
         $this->userFactory($data);

@@ -7,8 +7,8 @@ namespace Infra\Http\Controller;
 use Application\GetUser\GetUser;
 use Application\GetUser\InputModel;
 use Laminas\Diactoros\Response\JsonResponse;
-use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 final class GetUserController implements RequestHandlerInterface

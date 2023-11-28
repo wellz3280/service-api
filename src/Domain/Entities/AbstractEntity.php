@@ -8,6 +8,8 @@ use DateTimeImmutable;
 use JsonSerializable;
 use UnexpectedValueException;
 
+use function get_object_vars;
+use function is_null;
 use function json_decode;
 use function json_encode;
 

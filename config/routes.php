@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Infra\Http\Controller\PingController;
 use Infra\Http\Controller\CreateUserController;
 use Infra\Http\Controller\GetUserController;
+use Infra\Http\Controller\PingController;
 use Slim\App;
 
 return function (App $app) {

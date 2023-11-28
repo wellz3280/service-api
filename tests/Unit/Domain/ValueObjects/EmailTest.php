@@ -6,7 +6,6 @@ namespace tests\Unit\Domain\ValueObjects;
 
 use Domain\Exceptions\EmailException;
 use Domain\ValueObjects\Email;
-use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
@@ -32,16 +31,6 @@ final class EmailTest extends TestCase
         Email::create($value);
     }
 
-    public static function invalidEmail(): array
-    {
-        return [
-            ['welingtonzsilvagmail.com'],
-            ['welingtonzsilva@gmail'],
-            ['welington z silva@gmail.com.br'],
-            ['welington/silva@gmail.com.br'],
-        ];
-    }
-
     public function testEqualsWhenTheObjectWereTheSame(): void
     {
         $email      = 'welingtonzsilva@gmail.com';
@@ -58,5 +47,15 @@ final class EmailTest extends TestCase
         $emailTwo   = Email::create('jvalentine@umbrella.com');
 
         $this->assertFalse($emailOne->equals($emailTwo));
+    }
+
+    public static function invalidEmail(): array
+    {
+        return [
+            ['welingtonzsilvagmail.com'],
+            ['welingtonzsilva@gmail'],
+            ['welington z silva@gmail.com.br'],
+            ['welington/silva@gmail.com.br'],
+        ];
     }
 }
