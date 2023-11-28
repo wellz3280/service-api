@@ -41,7 +41,12 @@
         "phpunit:errors": "vendor/bin/phpunit --color --display-warnings --display-notices",
         "phpcs": "vendor/bin/phpcs --standard=ruleset.xml",
         "phpstan": "vendor/bin/phpstan analyze --memory-limit=512M",
-        "server": "php -S localhost:8081 -t public"
+        "server": "php -S localhost:8081 -t public",
+        "qa":[
+            "@phpunit",
+            "@phpcs",
+            "@phpstan"
+        ]
     },
     "config": {
         "allow-plugins": {
