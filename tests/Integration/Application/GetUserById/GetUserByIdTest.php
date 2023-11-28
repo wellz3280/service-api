@@ -57,7 +57,6 @@ final class GetUserByIdTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('User 1 not found.');
 
-        /** @var ViewModel $view */
         $usecase->handle(InputModel::createFromArray([
             'payload' => [
                 'id' => 1,
