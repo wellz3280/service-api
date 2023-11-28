@@ -9,7 +9,8 @@ use Infra\Http\Controller\PingController;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 
-return function (App $app) {
+return function (App $app, string $baseUrl) {
+    $app->setBasePath($baseUrl);
     $app->group('', function(RouteCollectorProxy $group) {
         $group->get('/ping', PingController::class);
         $group->get('/users/{id}', GetUserByIdController::class);
