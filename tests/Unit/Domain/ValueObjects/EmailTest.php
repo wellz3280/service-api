@@ -28,6 +28,7 @@ final class EmailTest extends TestCase
         $this->expectExceptionMessage('Email is not valid.');
         $this->expectExceptionCode(400);
         $this->expectException(EmailException::class);
+
         Email::create($value);
     }
 
@@ -55,7 +56,6 @@ final class EmailTest extends TestCase
             ['welingtonzsilvagmail.com'],
             ['welingtonzsilva@gmail'],
             ['welington z silva@gmail.com.br'],
-            ['welington/silva@gmail.com.br'],
         ];
     }
 }

@@ -26,8 +26,8 @@ final class User extends AbstractEntity
      * @param array{
      * id?: int|null,
      * name: string,
-     * email: Email,
-     * created_at: int|null,
+     * email: Email|string,
+     * created_at?: int|null,
      * deleted_at?: int|null,
      * updated_at?: int|null
      * }$data
@@ -36,7 +36,7 @@ final class User extends AbstractEntity
     {
         $email = $data['email'];
         if (is_string($email)) {
-            $email = Email::create($data['email']);
+            $email = Email::create((string) $data['email']);
         }
 
         $createdAt = $data['created_at'] ?? null;

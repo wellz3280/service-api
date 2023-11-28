@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Application;
 
+/** @phpstan-consistent-constructor */
 abstract class AbstractInputModel implements InputModelInterface
 {
     protected array $payload;

@@ -6,6 +6,7 @@ namespace Infra\Http\Controller;
 
 use Application\GetUser\GetUser;
 use Application\GetUser\InputModel;
+use Application\GetUser\ViewModel;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

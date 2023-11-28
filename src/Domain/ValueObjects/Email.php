@@ -16,7 +16,7 @@ final class Email implements Stringable, JsonSerializable
     public function __construct(string $email)
     {
         if (!$this->isValid($email)) {
-            throw EmailException::invalidEmail('Email is not valid.');
+            throw EmailException::invalidEmail();
         }
 
         $this->email = $email;

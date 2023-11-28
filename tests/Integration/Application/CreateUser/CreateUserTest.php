@@ -6,6 +6,7 @@ namespace Tests\Integration\Application\CreateUser;
 
 use Application\CreateUser\CreateUser;
 use Application\CreateUser\InputModel;
+use Domain\Entities\User;
 use Domain\Exceptions\EmailException;
 use Domain\ValueObjects\Email;
 use Infra\Persistence\UserRepository;
@@ -60,11 +61,11 @@ final class CreateUserTest extends TestCase
         $usecase    = new CreateUser($repository);
 
         $data = [
-            [
+            User::createFromArray([
                 'id'         => 1,
                 'name'       => 'jill valentine',
                 'email'      => 'valentine.jill@umbrella.com',
-            ],
+            ]),
         ];
 
         $this->userFactory($data);

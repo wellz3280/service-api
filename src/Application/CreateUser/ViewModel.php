@@ -20,6 +20,7 @@ final class ViewModel extends AbstractViewModel implements JsonSerializable
      * @param array{
      *  name:string,
      *  email: string,
+     *  created_at: string|null,
      * }$data
      */
     public static function createFromArray(?array $data = null): self
@@ -27,7 +28,7 @@ final class ViewModel extends AbstractViewModel implements JsonSerializable
         return new self(
             $data['name'],
             $data['email'],
-            $data['created_at'],
+            $data['created_at'] ?? null,
         );
     }
 

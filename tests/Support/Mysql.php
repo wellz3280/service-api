@@ -60,8 +60,8 @@ trait Mysql
         $stmt   = $pdo->prepare($sql);
 
         foreach ($users as $user) {
-            $stmt->bindValue(':name', $user['name'], PDO::PARAM_STR);
-            $stmt->bindValue(':email', $user['email'], PDO::PARAM_STR);
+            $stmt->bindValue(':name', $user->getName(), PDO::PARAM_STR);
+            $stmt->bindValue(':email', $user->getEmail()->value(), PDO::PARAM_STR);
             $stmt->bindValue(':created_at', (new DateTimeImmutable())->getTimestamp(), PDO::PARAM_INT);
             $stmt->bindValue(':deleted_at', null, PDO::PARAM_NULL);
             $stmt->bindValue('updated_at', null, PDO::PARAM_NULL);

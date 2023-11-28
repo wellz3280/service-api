@@ -20,11 +20,9 @@ final class CreateUserController implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $payload = [
-            'name'  => $request->getParsedBody()['name'],
-            'email' => $request->getParsedBody()['email'],
-        ];
-        $view = $this->usecase->handle(InputModel::createFromArray([
+        $payload    = (array) $request->getParsedBody();
+
+        $view       = $this->usecase->handle(InputModel::createFromArray([
             'payload' => $payload,
         ]));
 
