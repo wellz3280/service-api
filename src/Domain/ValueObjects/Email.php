@@ -6,6 +6,7 @@ namespace Domain\ValueObjects;
 
 use Domain\Exceptions\EmailException;
 use JsonSerializable;
+use Respect\Validation\Validator as v;
 use Stringable;
 
 final class Email implements Stringable, JsonSerializable
@@ -14,19 +15,21 @@ final class Email implements Stringable, JsonSerializable
 
     public function __construct(string $email)
     {
-       if ($this->isValid($email)) {
-           $this->email = $email;
+        if (!$this->isValid($email)) {
+            throw EmailException::invalidEmail('Email is not valid.');
         }
-    }
 
-    public function value(): string
-    {
-        return $this->email;
+        $this->email = $email;
     }
 
     public static function create(string $value): self
     {
         return new self($value);
+    }
+
+    public function value(): string
+    {
+        return $this->email;
     }
 
     public function equals(Email $email): bool
@@ -39,20 +42,13 @@ final class Email implements Stringable, JsonSerializable
         return $this->value();
     }
 
+    private function isValid(string $value): bool
+    {
+        return v::email()->validate($value);
+    }
+
     public function __toString(): string
     {
         return $this->value();
-    }
-
-    private function isValid(string $value): bool
-    {
-        $patters    = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/';
-        $validate   = preg_match($patters, $value);
-
-        if (!$validate) {
-            throw EmailException::invalidEmail('Email is not valid.');
-        }
-
-        return true;
     }
 }
