@@ -1,0 +1,17 @@
+parameters:
+  ignoreErrors:
+    -
+      message: '#^Parameter \#1 \$factory of function DI\\factory expects callable\(\)\: mixed#'
+      path: config/container.php
+    -
+      message: '#^Parameter \#1 \$factory of function DI\\factory expects callable\(\)\: mixed#'
+      path: tests/container.php
+  fileExtensions:
+    - php
+  checkGenericClassInNonGenericObjectType: false
+  checkMissingIterableValueType: false
+  level: 7
+  paths:
+    - src/
+    - tests/
+    - config/
