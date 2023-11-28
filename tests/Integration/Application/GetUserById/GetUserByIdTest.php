@@ -9,6 +9,7 @@ use Application\GetUserById\InputModel;
 use Application\GetUserById\ViewModel;
 use Domain\Entities\User;
 use Infra\Persistence\UserRepository;
+use InvalidArgumentException;
 use Tests\Support\Mysql;
 use Tests\TestCase;
 
@@ -43,5 +44,24 @@ final class GetUserByIdTest extends TestCase
         ]));
 
         $this->assertSame($expected[0]->getId(), $view->id);
+    }
+
+    public function testThrowExceptionWhenUserNotFound(): void
+    {
+        $pdo = $this->pdo();
+
+        $repository = new UserRepository($pdo);
+        $usecase    = new GetUserById($repository);
+
+        $this->expectExceptionCode(404);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('User 1 not found.');
+
+        /** @var ViewModel $view */
+        $usecase->handle(InputModel::createFromArray([
+            'payload' => [
+                'id' => 1,
+            ],
+        ]));
     }
 }
