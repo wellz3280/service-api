@@ -26,7 +26,8 @@ final class GetUser implements ServiceInterface
     public function handle(InputModelInterface $input): ViewModelInterface
     {
         $sql = 'SELECT * FROM users';
-        $stmt = $this->pdo->query($sql);
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
 
         $users = $stmt->fetchAll();
 
