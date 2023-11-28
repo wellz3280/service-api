@@ -2,10 +2,9 @@ parameters:
   ignoreErrors:
     -
       message: '#^Parameter \#1 \$factory of function DI\\factory expects callable\(\)\: mixed#'
+      reportUnmatched: false
       path: config/container.php
-    -
-      message: '#^Parameter \#1 \$factory of function DI\\factory expects callable\(\)\: mixed#'
-      path: tests/container.php
+
   fileExtensions:
     - php
   checkGenericClassInNonGenericObjectType: false
