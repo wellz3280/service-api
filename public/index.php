@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Dotenv\Dotenv;
+use Psr\Container\ContainerInterface;
 use Slim\App;
 use Slim\Factory\AppFactory;
 
@@ -11,15 +12,10 @@ require __DIR__ . '/../vendor/autoload.php';
 $dotent = Dotenv::createImmutable(__DIR__.'/../');
 $dotent->safeLoad();
 
+/** @var ContainerInterface $container */
 $container = require __DIR__.'/../config/bootstrap.php';
-AppFactory::setContainer($container);
 
-$app = AppFactory::create();
-
-$middleware = require __DIR__.'/../config/middleware.php';
-$middleware($app);
-
-$routes = require __DIR__.'/../config/routes.php';
-$routes($app);
+/** @var App $app */
+$app = $container->get(App::class);
 
 $app->run();
