@@ -27,6 +27,7 @@ trait Mysql
             id int(11) AUTO_INCREMENT,
             name varchar(200),
             email varchar(200),
+            password_hash varchar(255),
             created_at int not null,
             deleted_at int,
             updated_at int,
@@ -54,14 +55,16 @@ trait Mysql
     public function userFactory(array $users): void
     {
         $pdo = $this->pdo();
-        $values = ':name, :email, :created_at, :deleted_at, :updated_at';
-        $sql    = sprintf('INSERT INTO users (name, email, created_at, deleted_at, updated_at) Values (%s)', $values);
+        $params  = ':name, :email, :password_hash, :created_at, :deleted_at, :updated_at';
+        $columns = 'name, email, password_hash ,created_at, deleted_at, updated_at';
+        $sql    = sprintf('INSERT INTO users (%s) Values (%s)', $columns, $params);
 
         $stmt   = $pdo->prepare($sql);
 
         foreach ($users as $user) {
             $stmt->bindValue(':name', $user->getName(), PDO::PARAM_STR);
             $stmt->bindValue(':email', $user->getEmail()->value(), PDO::PARAM_STR);
+            $stmt->bindValue(':password_hash', $user->getPassword()->value(), PDO::PARAM_STR);
             $stmt->bindValue(':created_at', (new DateTimeImmutable())->getTimestamp(), PDO::PARAM_INT);
             $stmt->bindValue(':deleted_at', null, PDO::PARAM_NULL);
             $stmt->bindValue('updated_at', null, PDO::PARAM_NULL);
