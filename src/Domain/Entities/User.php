@@ -6,6 +6,7 @@ namespace Domain\Entities;
 
 use DateTimeImmutable;
 use Domain\ValueObjects\Email;
+use Domain\ValueObjects\Password;
 
 use function is_int;
 use function is_string;
@@ -16,9 +17,10 @@ final class User extends AbstractEntity
         protected int|null $id,
         private string $name,
         private Email $email,
+        private Password|null $password = null,
         protected int|null $createdAt,
-        protected int|null $deletedAt,
-        protected int|null $updatedAt,
+        protected int|null $deletedAt = null,
+        protected int|null $updatedAt = null,
     ) {
     }
 
@@ -27,6 +29,7 @@ final class User extends AbstractEntity
      * id?: int|null,
      * name: string,
      * email: Email|string,
+     * password: string|Password|null,
      * created_at?: int|null,
      * deleted_at?: int|null,
      * updated_at?: int|null
@@ -44,10 +47,16 @@ final class User extends AbstractEntity
             $createdAt = (new DateTimeImmutable())->setTimestamp($createdAt)->getTimestamp();
         }
 
+        $password = $data['password'] ?? null;
+        if (is_string($password)) {
+            $password = Password::create($password);
+        }
+
         return new self(
             $data['id'] ?? null,
             $data['name'],
             $email,
+            $password,
             $createdAt ?? (new DateTimeImmutable())->getTimestamp(),
             $data['deleted_at'] ?? null,
             $data['updated_at'] ?? null,
@@ -69,6 +78,11 @@ final class User extends AbstractEntity
     public function getEmail(): Email
     {
         return $this->email;
+    }
+
+    public function getPassword(): Password
+    {
+        return $this->password;
     }
 
     public function toArray(): array
