@@ -29,8 +29,9 @@ final class CreateUser implements ServiceInterface
         }
 
         $user = User::createFromArray([
-            'name'  => $input->getName(),
-            'email' => $input->getEmail(),
+            'name'      => $input->getName(),
+            'email'     => $input->getEmail(),
+            'password'  => $input->getPassword(),
         ]);
         $this->repository->save($user);
 
