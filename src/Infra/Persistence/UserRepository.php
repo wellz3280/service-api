@@ -24,13 +24,15 @@ final class UserRepository implements UserRepositoryInterface
 
     public function save(User $user): void
     {
-        $values = ':name, :email, :created_at, :deleted_at, :updated_at';
-        $sql    = sprintf('INSERT INTO users (name, email, created_at, deleted_at, updated_at) Values (%s)', $values);
+        $params  = ':name, :email, :password_hash, :created_at, :deleted_at, :updated_at';
+        $columns = 'name, email, password_hash ,created_at, deleted_at, updated_at';
+        $sql    = sprintf('INSERT INTO users (%s) Values (%s)', $columns, $params);
 
         $stmt   = $this->pdo->prepare($sql);
 
         $stmt->bindValue(':name', $user->getName(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $user->getEmail()->value(), PDO::PARAM_STR);
+        $stmt->bindValue(':password_hash', $user->getPassword()->value(), PDO::PARAM_STR);
         $stmt->bindValue(':created_at', $user->getCreatedAtFromTimeStanp(), PDO::PARAM_INT);
         $stmt->bindValue(':deleted_at', null, PDO::PARAM_NULL);
         $stmt->bindValue('updated_at', null, PDO::PARAM_NULL);
