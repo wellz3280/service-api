@@ -2,4 +2,6 @@
 .env
 *.xml
 comandos.txt
+issues.txt
 composer.lock
+.phpunit.cache
