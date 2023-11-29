@@ -6,6 +6,7 @@ $users = 'CREATE TABLE users (
     id int(11) AUTO_INCREMENT,
     name varchar(200),
     email varchar(200),
+    password_hash varchar(255),
     created_at int not null,
     deleted_at int,
     updated_at int,
