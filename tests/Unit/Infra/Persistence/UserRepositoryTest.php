@@ -23,8 +23,9 @@ final class UserRepositoryTest extends TestCase
     public function testSaveUserAndFindById(): void
     {
         $user = User::createFromArray([
-            'name' => 'weliton',
-            'email' => 'w@w.com.br',
+            'name'      => 'weliton',
+            'email'     => 'w@w.com.br',
+            'password'  => '12@Weliton',
         ]);
 
         $pdo = $this->pdo();
@@ -56,8 +57,9 @@ final class UserRepositoryTest extends TestCase
         $pdo = $this->pdo();
 
         $user = User::createFromArray([
-            'name' => 'weliton',
-            'email' => 'w@w.com.br',
+            'name'      => 'weliton',
+            'email'     => 'w@w.com.br',
+            'password'  => '12@Weliton',
         ]);
 
         $repository = new UserRepository($pdo);
@@ -76,8 +78,9 @@ final class UserRepositoryTest extends TestCase
         $pdo = $this->pdo();
 
         $user = User::createFromArray([
-            'name' => 'weliton',
-            'email' => 'w@w.com.br',
+            'name'      => 'weliton',
+            'email'     => 'w@w.com.br',
+            'password'  => '12@Weliton',
         ]);
 
         $repository = new UserRepository($pdo);
@@ -94,8 +97,9 @@ final class UserRepositoryTest extends TestCase
     public function testFindByEmail(): void
     {
         $user = User::createFromArray([
-            'name' => 'weliton',
-            'email' => 'w@w.com.br',
+            'name'      => 'weliton',
+            'email'     => 'w@w.com.br',
+            'password'  => '12@Weliton',
         ]);
 
         $pdo = $this->pdo();
@@ -125,8 +129,9 @@ final class UserRepositoryTest extends TestCase
     public function testHasUserFromId(): void
     {
         $user = User::createFromArray([
-            'name' => 'weliton',
-            'email' => 'w@w.com.br',
+            'name'      => 'weliton',
+            'email'     => 'w@w.com.br',
+            'password'  => '12@Weliton',
         ]);
 
         $pdo = $this->pdo();
@@ -141,8 +146,9 @@ final class UserRepositoryTest extends TestCase
     public function testHasUserFromEmail(): void
     {
         $user = User::createFromArray([
-            'name' => 'weliton',
-            'email' => 'w@w.com.br',
+            'name'      => 'weliton',
+            'email'     => 'w@w.com.br',
+            'password'  => '12@Weliton',
         ]);
 
         $pdo = $this->pdo();
@@ -157,8 +163,9 @@ final class UserRepositoryTest extends TestCase
     public function testDeleteUser(): void
     {
         $user = User::createFromArray([
-            'name' => 'weliton',
-            'email' => 'w@w.com.br',
+            'name'      => 'weliton',
+            'email'     => 'w@w.com.br',
+            'password'  => '12@Weliton',
         ]);
 
         $pdo = $this->pdo();
@@ -185,8 +192,9 @@ final class UserRepositoryTest extends TestCase
     public function testUpdateUser(): void
     {
         $data = User::createFromArray([
-            'name' => 'weliton',
-            'email' => 'w@w.com.br',
+            'name'      => 'weliton',
+            'email'     => 'w@w.com.br',
+            'password'  => '12@Weliton',
         ]);
 
         $pdo = $this->pdo();

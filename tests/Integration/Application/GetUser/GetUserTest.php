@@ -28,16 +28,19 @@ final class GetUserTest extends TestCase
                 'id'         => 1,
                 'name'       => 'jill valentine',
                 'email'      => 'valentine.jill@umbrella.com',
+                'password'   => '12@Valentine',
             ]),
             User::createFromArray([
-                'id' => 2,
-                'name' => 'claire redfield',
-                'email' => 'claire.redfield@umbrella.com',
+                'id'         => 2,
+                'name'       => 'claire redfield',
+                'email'      => 'claire.redfield@umbrella.com',
+                'password'   => '12@Redfield',
             ]),
             User::createFromArray([
-                'id' => 3,
-                'name' => 'leon s. kennedy',
-                'email' => 'leon.kennedy@umbrella.com',
+                'id'         => 3,
+                'name'       => 'leon s. kennedy',
+                'email'      => 'leon.kennedy@umbrella.com',
+                'password'   => '12@Kennedy',
             ]),
         ];
 

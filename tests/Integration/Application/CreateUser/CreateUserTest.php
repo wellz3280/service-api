@@ -28,8 +28,9 @@ final class CreateUserTest extends TestCase
 
         $usecase->handle(InputModel::createFromArray([
             'payload' => [
-                'name'  => 'weliton',
-                'email' => 'w@w.com.br',
+                'name'      => 'weliton',
+                'email'     => 'w@w.com.br',
+                'password'  => '12@Weliton',
             ],
         ]));
 
@@ -48,8 +49,9 @@ final class CreateUserTest extends TestCase
 
         $usecase->handle(InputModel::createFromArray([
             'payload' => [
-                'name'  => 'weliton',
-                'email' => 'ww.com.br',
+                'name'      => 'weliton',
+                'email'     => 'ww.com.br',
+                'password'  => '12@Weliton',
             ],
         ]));
     }
@@ -65,6 +67,7 @@ final class CreateUserTest extends TestCase
                 'id'         => 1,
                 'name'       => 'jill valentine',
                 'email'      => 'valentine.jill@umbrella.com',
+                'password'   => '12@Weliton',
             ]),
         ];
 
@@ -76,8 +79,9 @@ final class CreateUserTest extends TestCase
 
         $usecase->handle(InputModel::createFromArray([
             'payload' => [
-                'name'  => 'julia valentine',
-                'email' => 'valentine.jill@umbrella.com',
+                'name'      => 'julia valentine',
+                'email'     => 'valentine.jill@umbrella.com',
+                'password'  => '12@Weliton',
             ],
         ]));
     }

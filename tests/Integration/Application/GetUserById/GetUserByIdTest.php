@@ -28,6 +28,7 @@ final class GetUserByIdTest extends TestCase
                 'id'         => 1,
                 'name'       => 'jill valentine',
                 'email'      => 'valentine.jill@umbrella.com',
+                'password'   => '12@Weliton',
             ]),
         ];
 

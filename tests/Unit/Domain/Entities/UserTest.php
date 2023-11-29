@@ -22,6 +22,7 @@ final class UserTest extends TestCase
             'id'         => 1,
             'name'       => 'josé weliton da silva',
             'email'      => 'we@w.com.br',
+            'password'   => '12@Weliton',
             'created_at' => (new DateTimeImmutable())->getTimestamp(),
             'deleted_at' => null,
             'updated_at' => null,
@@ -36,6 +37,7 @@ final class UserTest extends TestCase
         $this->assertSame((new DateTimeImmutable())->format(DATE_ATOM), $user->getCreatedAt());
         $this->assertNull($user->getDeletedAt());
         $this->assertNull($user->getUpdatedAt());
+        unset($expected['password']);
         $this->assertSame($expected, $user->toArray());
     }
 
