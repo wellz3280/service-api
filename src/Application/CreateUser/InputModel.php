@@ -9,7 +9,6 @@ use Domain\Exceptions\ValidationException;
 use Domain\ValueObjects\Email;
 use Domain\ValueObjects\Password;
 use Respect\Validation\Exceptions\NestedValidationException;
-use Respect\Validation\Exceptions\ValidatorException;
 use Respect\Validation\Validator as v;
 
 final class InputModel extends AbstractInputModel
