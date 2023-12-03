@@ -47,6 +47,7 @@ final class UserTest extends TestCase
             'id'         => 1,
             'name'       => 'josé weliton da silva',
             'email'      => Email::create('we@w.com.br'),
+            'password'   => 'P@ssword123',
             'created_at' => (new DateTimeImmutable())->getTimestamp(),
             'deleted_at' => null,
             'updated_at' => null,
@@ -63,6 +64,7 @@ final class UserTest extends TestCase
             'id'         => 1,
             'name'       => 'josé weliton da silva',
             'email'      => Email::create('we@w.com.br'),
+            'password'   => 'P@ssword123',
         ];
 
         $user = User::createFromArray($expected);
