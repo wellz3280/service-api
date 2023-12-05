@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Infra\Http\Controller\CreateUserController;
+use Infra\Http\Controller\DeleteUserController;
 use Infra\Http\Controller\GetUserByIdController;
 use Infra\Http\Controller\GetUserController;
 use Infra\Http\Controller\PingController;
@@ -19,5 +20,6 @@ return function (App $app, string $baseUrl) {
         $group->get('/users/{id}', GetUserByIdController::class);
         $group->post('/users', CreateUserController::class);
         $group->get('/users', GetUserController::class);
+        $group->delete('/users/{id}', DeleteUserController::class);
     });
 };
