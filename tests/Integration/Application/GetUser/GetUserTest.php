@@ -12,6 +12,8 @@ use Domain\Entities\User;
 use Tests\Support\Mysql;
 use Tests\TestCase;
 
+use const DATE_ATOM;
+
 /**
  * @covers Application\GetUser\GetUser
  */
@@ -52,7 +54,7 @@ final class GetUserTest extends TestCase
             $this->assertSame($data[$k]->getId(), $expected['id']);
             $this->assertSame($data[$k]->getName(), $expected['name']);
             $this->assertSame($data[$k]->getEmail()->value(), $expected['email']);
-            $this->assertSame((new DateTimeImmutable())->getTimestamp(), $expected['created_at']);
+            $this->assertSame((new DateTimeImmutable())->format(DATE_ATOM), $expected['created_at']);
             $this->assertNull($expected['updated_at']);
         }
     }
