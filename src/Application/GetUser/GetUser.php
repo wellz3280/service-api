@@ -11,6 +11,7 @@ use DateTimeImmutable;
 use PDO;
 
 use function array_map;
+use function is_null;
 
 use const DATE_ATOM;
 
@@ -54,8 +55,7 @@ final class GetUser implements ServiceInterface
                 'created_at'    => $createdAt,
                 'updated_at'    => $updatedAt,
             ];
-            }, (array) $users
-        );
+        }, (array) $users);
 
         return ViewModel::createFromArray($output);
     }

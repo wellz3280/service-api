@@ -16,6 +16,9 @@ final class InputModel extends AbstractInputModel
         return (int) $this->getPayload()['id'];
     }
 
+    /**
+     * @param mixed[] $data
+     */
     public function throwExceptionOnFailure(array $data): void
     {
         try {
