@@ -137,11 +137,16 @@ final class UserRepository implements UserRepositoryInterface
             throw new InvalidArgumentException(sprintf('User %s not found.', $id), 404);
         }
 
-        $sql = 'UPDATE users SET name=:name WHERE id=:id AND deleted_at IS NULL';
+        $columns = 'name=:name, updated_at=:updated_at';
+        $where   = 'id=:id AND deleted_at IS NULL';
+        $sql = sprintf('UPDATE users SET %s WHERE %s', $columns, $where);
         $stmt   = $this->pdo->prepare($sql);
+
+        $date = (new DateTimeImmutable())->getTimestamp();
 
         $stmt->bindValue(':id', (int) $user->getId(), PDO::PARAM_INT);
         $stmt->bindValue(':name', $user->getName(), PDO::PARAM_STR);
+        $stmt->bindValue(':updated_at', $date, PDO::PARAM_INT);
 
         $stmt->execute();
     }
